@@ -7,5 +7,4 @@ This project is a Streamlit-based PoC that allows you to upload a video, transcr
 1. Clone this repository.
 2. Install the dependencies:
 
-```bash
 pip install -r requirements.txt

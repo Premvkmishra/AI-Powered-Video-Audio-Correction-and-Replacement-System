@@ -6,8 +6,7 @@ import json
 def main():
     st.title("Azure OpenAI GPT-4o Connectivity Test")
     
-    # Define the API key and endpoint
-    azure_openai_key = "22ec84421ec24230a3638d1b51e3a7dc"  # Replace with your API key
+    azure_openai_key = "22ec84421ec242308d1b51e3a7dc"  
     azure_openai_endpoint = "https://internshala.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview"
     
     if st.button("Connect and Get Response"):

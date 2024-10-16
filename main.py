@@ -5,11 +5,9 @@ import moviepy.editor as mp
 import os
 import requests
 
-# Set OpenAI API Key
 openai.api_key = "22ec84421ec24230a3638d1b7dc"
 openai_api_endpoint = "https://internshala.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview"
 
-# Google Cloud Credentials setup
 speech_client = speech.SpeechClient()
 tts_client = texttospeech.TextToSpeechClient()
 
@@ -75,34 +73,26 @@ def replace_audio_in_video(video_file, audio_file):
     new_video.write_videofile(output_file, codec="libx264", audio_codec="aac")
     return output_file
 
-# Streamlit UI
 st.title("AI-Powered Video Audio Replacement")
 
-# Video File Upload
 video_file = st.file_uploader("Upload a Video File", type=["mp4", "mov", "avi"])
 
 if video_file:
     st.write("Processing the video...")
     
-    # Extract audio from video
     audio_file = extract_audio(video_file)
     st.write("Audio extracted.")
     
-    # Transcribe audio
     transcript = transcribe_audio(audio_file)
     st.write("Transcription: ", transcript)
     
-    # Correct transcription using GPT-4o
     corrected_transcript = correct_transcription(transcript)
     st.write("Corrected Transcript: ", corrected_transcript)
     
-    # Convert corrected text to speech
     corrected_audio_file = text_to_speech(corrected_transcript)
     st.write("Generated Corrected Audio.")
     
-    # Replace audio in the original video
     final_video_file = replace_audio_in_video(video_file, corrected_audio_file)
     st.write("Final video generated.")
 
-    # Display the final video
     st.video(final_video_file)
